@@ -54,4 +54,4 @@ if __name__ == '__main__':
     words_and_numbers = get_most_frequent_words(text)
     print(print_txt)
     for num in range(0,10):
-        print(num, '. ', words_and_numbers[num][0], ' [', words_and_numbers[num][1], ']')
+        print(num+1, '. ', words_and_numbers[num][0], ' [', words_and_numbers[num][1], ']')
