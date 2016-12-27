@@ -27,17 +27,9 @@ def get_most_frequent_words(text):
             words[word.lower()]+= 1
             word = '' 
     words.__delitem__('')
-    return words 
-def get_ten_frequent_words(words_dict):
-    number_occurrences = sorted(words_dict.values())[-10:][::-1]
-    frequent_words = [x for x in range(0,10)]
-    for word in words_dict:
-        for number in range(0,len(number_occurrences)):
-            if words_dict[word] == number_occurrences[number] and word not in frequent_words:
-                 number_occurrences[number] = 0
-                 frequent_words[number] = word
-    number_word = sorted(words_dict.values())[-10:][::-1]
-    return number_word,frequent_words   
+    lambda_funs = lambda x: x[1]
+    frequent_words = sorted(words.items(), key=lambda_funs, reverse=True)[0:10]
+    return frequent_words 
 
 if __name__ == '__main__':
     print("""
@@ -59,8 +51,7 @@ if __name__ == '__main__':
         else:
             break
          
-    words_dict = get_most_frequent_words(text)
-    words_and_numbers = get_ten_frequent_words(words_dict)
+    words_and_numbers = get_most_frequent_words(text)
     print(print_txt)
     for num in range(0,10):
-        print(num, '. ', words_and_numbers[1][num], ' [', words_and_numbers[0][num], ']')
+        print(num, '. ', words_and_numbers[num][0], ' [', words_and_numbers[num][1], ']')
