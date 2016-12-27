@@ -37,20 +37,7 @@ if __name__ == '__main__':
 Программа найдет самые частые слова в любом тексте.
 
 """)
-    while True:
-        try:
-            filepath = input('Введите путь до фаила с текстом(пример: text.txt) :  ')
-            text = load_data(filepath) 
-        except EOFError:
-            text = load_data()
-        except FileNotFoundError:
-            print("""
-Введите правильный путь
-""")
-        
-        else:
-            break
-         
+    filepath = input('Введите путь до фаила с текстом(пример: text.txt) :  ')        
     words_and_numbers = get_most_frequent_words(text)
     print(print_txt)
     for num in range(0,10):
