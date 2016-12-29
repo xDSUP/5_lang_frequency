@@ -24,7 +24,7 @@ def get_most_frequent_words(text):  # вернет словa и их колич�
 if __name__ == '__main__':
     print("Программа найдет самые частые слова в любом тексте.")
     filepath = input('Введите путь до фаила с текстом(пример: text.txt) :  ')
-    text = load_data(filepath)  # текст в форме строки без
+    text = load_data(filepath)  # текст в форме строки
     words_and_counts = get_most_frequent_words(text)[0:10]
     print("Часто встречающиеся слова:")
     for item in words_and_counts:
