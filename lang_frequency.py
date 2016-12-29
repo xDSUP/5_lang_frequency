@@ -1,3 +1,4 @@
+import collections
 import re
 '''
 Created on 25 12 2016
