@@ -1,5 +1,6 @@
-from collections import Counter
 import re
+from collections import Counter
+
 '''
 Created on 25 12 2016
 @author: xD_HOHOHO
@@ -13,19 +14,19 @@ def load_data(filepath):
 
 
 def get_most_frequent_words(text):
-    text = re.sub(r'[`~#0123456789=\+\*\_&\?!\.\$\@,]', ' ', text)
-    text = re.sub(r'[\-;:"\'\n()\[\]\{\}\\/\|]', ' ', text)
-    all_words = re.findall(r'\w+', text)
-    words_and_meetings = Counter()
-    for word in all_words:
-        words_and_meetings[word.lower()] += 1
-    return sorted(words_and_meetings.items(), key=lambda x: x[1], reverse=True)
+    text = re.sub(r'[\d]', ' ', text)
+    all_words = re.split(r'\W+', text.lower())
+    return Counter(all_words).most_common(10)
 
 if __name__ == '__main__':
-    print("Программа найдет самые частые слова в любом тексте.")
     filepath = input('Введите путь до фаила с текстом(пример: text.txt) :  ')
-    text = load_data(filepath)
-    words_and_counts = get_most_frequent_words(text)[0:10]
-    print("Часто встречающиеся слова:")
-    for item in words_and_counts:
-        print(" '{}' встречается {} раз".format(item[0], item[1]))
+    if filepath:
+        try:
+            text = load_data(filepath)
+            print("Часто встречающиеся слова:")
+            for item in get_most_frequent_words(text):
+                print(" '{}' встречается {} раз".format(item[0], item[1]))
+        except FileNotFoundError:
+            print('Фаил не найден')
+    else:
+        print('Вы не ввели путь до фаила')
