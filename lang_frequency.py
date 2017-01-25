@@ -12,11 +12,11 @@ def load_data(filepath):
         return text
 
 
-def get_most_frequent_words(text):
+def get_most_frequent_words(text, word_count):
     treated_text = re.sub(r'[\d]', ' ', text)
     all_words = re.split(r'\W+', treated_text.lower())
-    ten_frequent_words = Counter(all_words).most_common(10)
-    return ten_frequent_words
+    frequent_words = Counter(all_words).most_common(word_count)
+    return frequent_words
 
 
 def print_frequent_words(frequent_words):
@@ -28,5 +28,6 @@ def print_frequent_words(frequent_words):
 if __name__ == '__main__':
     filepath = input('Введите путь до фаила с текстом(пример: text.txt) :  ')
     text = load_data(filepath)
-    frequent_words = get_most_frequent_words(text)
+    word_count = 10
+    frequent_words = get_most_frequent_words(text, word_count)
     print_frequent_words(frequent_words)
